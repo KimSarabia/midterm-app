@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MIDTERM APP</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/bower_components/ngstorage/ngStorage.js"></script>
+
+    <script src="/js/module.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/services.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="mainCtrl">
+    <div class="customNav">
+        <div>
+            <a ng-if="!isLoggedIn" ui-sref="login">LOG IN</a>
+            <a ng-if="!isLoggedIn" ui-sref="registration">REGISTER</a>
+            <a ng-if="isLoggedIn" ng-click="logOut()">LOG OUT</a>
+        </div>
+    </div>
+    <ui-view></ui-view>
+</body>
+</html>

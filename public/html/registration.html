@@ -1,0 +1,46 @@
+<div class="container">
+    <h4 class="loginPanelHeader" ng-if="!success">REGISTRATION</h4>
+    <h4 class="loginPanelHeader" ng-if="success">Taking You to Login</h4>
+    <div class="successNotifier" ng-if="success">You're registered!</div>
+
+    <form role="form" ng-submit="register()" ng-if="!success">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <br>
+            <input type="email" id="email" placeholder="Enter email" ng-model="registration.email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <br>
+            <input type="password" placeholder="Enter password" ng-model="registration.password1" required>
+
+        </div>
+        <div class="form-group">
+            <label for="password">Password again:</label>
+            <br>
+            <input type="password" id="password" placeholder="Enter password again" ng-model="registration.password2" required>
+            <div ng-if="notMatching">
+                Passwords Do Not Match!
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <br>
+            <input type="username" id="username" placeholder="Username" ng-model="registration.username" required>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <br>
+            <input type="firstName" id="firstName" placeholder="First Name" ng-model="registration.firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <br>
+            <input type="lastName" id="lastName" placeholder="Last Name" ng-model="registration.lastName" required>
+            <br>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default regButton">Register</button>
+        </div>
+    </form>
+</div>
