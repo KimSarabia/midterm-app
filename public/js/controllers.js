@@ -44,6 +44,7 @@ app.controller("allBeersCtrl", function($scope, $state, User, Beer) {
       Beer.getAll()
       .then(function(res) {
         $scope.beers = res.data;
+        console.log($scope.beers);
       }, function(err) {
         console.log('err: ', err);
       })

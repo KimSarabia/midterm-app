@@ -2,6 +2,17 @@
 
 var app = angular.module('myApp');
 
+//TODO: THING SERVICE
+app.service('Beer', function($http, $sessionStorage, $q) {
+  this.getRandom = () => {
+    return $http.get('./api/beers/random');
+  }
+  this.getAll = () => {
+    return $http.get('./api/beers/')
+  }
+
+});
+
 app.service('User', function($http, $sessionStorage, $q) {
 
   this.signup = (newUserObj) => {
@@ -36,16 +47,6 @@ app.service('User', function($http, $sessionStorage, $q) {
 
 })
 
-//TODO: THING SERVICE
-app.service('Beer', function($http, $sessionStorage, $q) {
-  this.getRandom = () => {
-    return $http.get('./api/beers/random');
-  }
-  this.getAll = () => {
-    return $http.get('./api/beers/')
-  }
-
-});
 
 app.service('StoreData', function() {
   var storeData = {};
