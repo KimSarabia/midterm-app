@@ -4,17 +4,24 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../models/user');
+var Beer = require('../models/beer');
+
 //TODO: var Thing = require('../models/thing');
 
 router.get('/', (req, res) => {
+  console.log('res:', res);
   User.find({}, (err, users) => {
     res.status(err ? 400 : 200).send(err || users);
+    console.log(res);
   }).select({password: false});
 });
 
 router.post('/register', (req, res) => {
   User.register(req.body, err => {
-    res.status(err ? 400 : 200).send(err || "Successful registration!");
+    console.log('req.body:', req.body);
+    console.log(err);
+    res.status(err ? 400 : 200).send(err || "USER REGISTERED!");
+    console.log(err);
   });
 });
 

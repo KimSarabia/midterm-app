@@ -8,17 +8,16 @@ var bcrypt = require('bcryptjs');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 //TODO: Add thing model here
-// EXAMPLE: var Thing = require('../models/thing');
+var Beer = require('../models/beer');
 
 var userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  username: {type: String, required: true},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
-  isAdmin: { type: Boolean, default: false }
+  isAdmin: { type: Boolean, default: false },
   //TODO: ADD THING REF HERE
-  // things: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Thing' }]
+  beers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Beer' }]
 });
 
 // IT'S MIDDLEWARE!!
@@ -31,7 +30,7 @@ userSchema.statics.isLoggedIn = function(req, res, next) {
     User
       .findById(payload._id)
       .select({password: false})
-      .populate('auctions')
+      .populate('beers')
       .exec((err, user) => {
         if(err || !user) {
           return res.clearCookie('accessToken').status(400).send(err || {error: 'User not found.'});
@@ -52,10 +51,9 @@ userSchema.statics.register = function(userObj, cb) {
       var user = new User({
         email: userObj.email,
         password: hash,
-        username: userObj.username,
         firstName: userObj.firstName,
         lastName: userObj.lastName
-      })
+      });
       user.save(cb)
     })
   })
@@ -65,12 +63,15 @@ userSchema.statics.editProfile = function(userId, newUser, cb) {
   User.findByIdAndUpdate(userId, { $set: newUser }, {new: true}, cb);
 };
 
+
 userSchema.statics.authenticate = function(userObj, cb) {
+  console.log('userObj', userObj);
   this.findOne({email: userObj.email}, (err, dbUser) => {
     if(err || !dbUser) return cb(err || { error: 'Login failed. Username or password incorrect.' });
-
+console.log('err:', err);
     bcrypt.compare(userObj.password, dbUser.password, (err, isGood) => {
       if(err || !isGood) return cb(err || { error: 'Login failed. Username or password incorrect.' });
+      console.log('err:', err);
 
       var token = dbUser.makeToken();
 

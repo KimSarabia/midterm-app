@@ -13,16 +13,13 @@ var http = require('http');
 
 var mongoose = require('mongoose');
 
-//TODO: Change Thing Database
-const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/thing-database';
+const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/beer-database';
 
 mongoose.connect(MONGOURL, err => {
   console.log(err || `MongoDB connected to ${MONGOURL}`);
 });
 
 var User = require('./models/user');
-//TODO: ADD THING MODEL
-
 var app = express();
 
 app.use(logger('dev'));

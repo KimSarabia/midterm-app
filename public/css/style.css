@@ -8,7 +8,7 @@ a {
   color: #fff
 }
 .container {
-  text-align: center;  
+  text-align: center;
 }
 
 h1, h3, h4, label{
@@ -18,4 +18,14 @@ h1, h3, h4, label{
 .customNav {
   text-align: right;
   font-size: 1.5em;
+}
+
+input {
+background-color: transparent;
+color: #fff;
+}
+
+input[type=text] {
+    border: none;
+    border-bottom: 2px solid white;
 }
