@@ -24,7 +24,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       templateUrl: '/html/profile.html',
       controller: 'profileCtrl'
     })
-    .state('beer', {
+    .state('newbeer', {
       url:'/newbeer',
       templateUrl: '/html/newbeer.html',
       controller: 'newBeerCtrl'
