@@ -8,7 +8,7 @@ var User = require('../models/user');
 var beerSchema = new mongoose.Schema({
   name: { type: String },
   imgUrl: { type: String },
-  desc: { type: String },
+  description: { type: String },
   sampled: { type: Boolean, default: false },
   rating: { type: Number },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

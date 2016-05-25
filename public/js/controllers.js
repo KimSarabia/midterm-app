@@ -26,6 +26,18 @@ app.controller('homeCtrl', function($scope, User, $state) {
 });
 
 //TODO ADD NEW 'THING' CONTROLLER HERE --'ADD A THING'
+app.controller("newBeerCtrl", function($scope, $state, User, Beer) {
+  console.log('beer controller works!');
+    $scope.randomBeer = function() {
+      Beer.getRandom()
+      .then(function(res) {
+        $scope.beer = res.data;
+      }, function(err) {
+        console.log('err: ', err);
+      })
+    };
+});
+
 
 //TODO ADD 'THING CONTROLLER HERE' --SHOW SINGLE 'THING' CONTROLLER
 
@@ -63,7 +75,7 @@ app.controller('loginCtrl', function($scope, User, $state, $sessionStorage) {
           .then(() => {
             $state.go('profile')
           });
-  }
+  };
 });
 
 app.controller('profileCtrl', function($scope, User, $state, $sessionStorage, $stateParams) {
@@ -74,3 +86,37 @@ app.controller('profileCtrl', function($scope, User, $state, $sessionStorage, $s
       $scope.profile = res.data;
     });
 });
+
+// "use strict";
+//
+// var app = angular.module("myApp");
+//
+// app.controller("beerCtrl", function($scope, $state, UserService, BeerService) {
+//
+//   UserService.getUser()
+//   .then(function(res) {
+//     $scope.randomBeer();
+//   }, function(err) {
+//     console.log('err: ', err);
+//     $state.go('home')
+//   })
+//
+//   $scope.randomBeer = function() {
+//     BeerService.random()
+//     .then(function(res) {
+//       $scope.beer = res.data;
+//     }, function(err) {
+//       console.log('err: ', err);
+//     })
+//   }
+//
+//   $scope.rateBeer = function(beer) {
+//     beer.sampled = true;
+//     BeerService.save(beer);
+//     $scope.randomBeer();
+//   }
+//
+//   $scope.notTried = function() {
+//     $scope.randomBeer();
+//   }
+// })

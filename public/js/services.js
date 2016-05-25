@@ -37,7 +37,12 @@ app.service('User', function($http, $sessionStorage, $q) {
 })
 
 //TODO: THING SERVICE
+app.service('Beer', function($http, $sessionStorage, $q) {
+  this.getRandom = () => {
+    return $http.get('./api/beers/random');
+  }
 
+});
 
 app.service('StoreData', function() {
   var storeData = {};
