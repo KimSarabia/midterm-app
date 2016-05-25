@@ -41,6 +41,9 @@ app.service('Beer', function($http, $sessionStorage, $q) {
   this.getRandom = () => {
     return $http.get('./api/beers/random');
   }
+  this.getAll = () => {
+    return $http.get('./api/beers/')
+  }
 
 });
 

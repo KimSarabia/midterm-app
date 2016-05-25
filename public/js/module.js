@@ -29,6 +29,11 @@ app.config(function($stateProvider, $urlRouterProvider){
       templateUrl: '/html/newbeer.html',
       controller: 'newBeerCtrl'
     })
+    .state('allbeers', {
+      url:'/allbeers',
+      templateUrl: '/html/allbeers.html',
+      controller: 'allBeersCtrl'
+    })
     //TODO: ADD NEW THING, THINGS, and THING DETAILS STATES
   $urlRouterProvider.otherwise('/');
 });
